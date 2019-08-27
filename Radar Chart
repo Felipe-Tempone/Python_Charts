@@ -13,7 +13,7 @@ df = pd.DataFrame({
 'Var2': [100],
 'Var3':[100],
 'Var4': [100]
-#,'DSO': [50] #You can add as many axis as you want!
+#,'VarN': [100] #You can add as many axis as you want!
 })
 
 labels=df[0:]
