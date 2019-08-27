@@ -48,6 +48,6 @@ ax.plot(angles, values, linewidth=1, linestyle='solid', color='navy')
 
 ax.fill(angles, values, 'navy', alpha=0.1)
 
-plt.savefig(r'\Users\TemponeTemponeCardos\Desktop\RadarPlot.png',transparent=True, bbox_inches='tight',dpi=1000)
+plt.savefig(r'file_path\RadarPlot.png',transparent=True, bbox_inches='tight',dpi=1000)
 
 plt.show()
