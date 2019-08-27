@@ -1,0 +1,34 @@
+#Pie Plot
+#Developed by Felipe Tempone
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+#Select the dataframe and paste path
+df = pd.read_excel(r"df_path.xlsx",'x')
+
+#Complete with the labels and sizes column names
+labels_column = "Label"
+sizes_column = "Values"
+
+
+sizes = df[sizes_column].tolist()
+labels = df[labels_column].tolist()
+
+df_used=df[ [labels_column,sizes_column] ]
+
+colors=('teal','lightseagreen','darkturquoise','paleturquoise','mediumslateblue','slateblue',
+        'darkslateblue','lightslategrey','silver','lightsteelblue','seashell')
+
+# Plot
+plt.pie(sizes, autopct='%1.0f%%', pctdistance=1.25, colors=colors, shadow=False, startangle=90,radius=1.25)
+
+plt.title('Title', loc="left")
+
+plt.axis('equal')
+plt.legend(labels, bbox_to_anchor=(1.25,0.75), loc="center")
+
+plt.savefig(r'file_path\PiePlot.png',transparent=True, bbox_inches='tight',dpi=1000)
+
+plt.show()
