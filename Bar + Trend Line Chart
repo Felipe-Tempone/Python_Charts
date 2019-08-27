@@ -10,7 +10,7 @@ import seaborn as sns
 
 #Dataframe
 df = pd.read_excel(
-    r"C:\Users\TemponeTemponeCardos\Documents\Documents\Analises_Historicas_CAR\Over30_trend.xlsx",'Brazil') #endereço do arquivo + a Tab
+    r"file_path.xlsx",'Brazil') #endereço do arquivo + a Tab
 
 #abels and sizes column names
 labels_column = "Month" #coluna de títulos
@@ -70,6 +70,6 @@ plt.ylabel(" ")
 
 plt.legend(bbox_to_anchor=(0.8, 1), loc='upper left')
 
-plt.savefig(r'\Users\TemponeTemponeCardos\Desktop\Bar&LinearPlot.png',transparent=True, bbox_inches='tight',dpi=500)
+plt.savefig(r'file_path\BarLinePlot.png',transparent=True, bbox_inches='tight',dpi=500)
 
 plt.show()
