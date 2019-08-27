@@ -1,0 +1,41 @@
+#Bar Plot
+#Developed by Felipe Tempone
+
+import numpy as np
+import pandas as pd
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+#Select the dataframe and paste path and sheet name
+df = pd.read_excel(
+    r"C:\Users\TemponeTemponeCardos\Desktop\Book1.xlsx",'x') #endereço do arquivo + a Tab
+
+#Complete with the labels and sizes column names
+labels_column = "Company" #coluna de títulos
+sizes_column = "%" #coluna de valores
+
+#hfont = {'fontname':'IBM Plex Mono'}
+
+height = df[sizes_column].tolist()
+width = df[labels_column].tolist()
+
+df_used=df[ [labels_column,sizes_column] ]
+
+plt.barh(width, height, align='center',color='teal')
+
+plt.title(' ')
+
+ax = plt.gca()
+
+ax.spines['bottom'].set_color('w')
+ax.spines['left'].set_color('w')
+ax.spines['top'].set_color('w')
+ax.spines['right'].set_color('w')
+
+ax.set_xlabel(labels_column)
+ax.set_ylabel(sizes_column)
+
+print(df_used)
+
+plt.savefig(r'\Users\TemponeTemponeCardos\Desktop\BarPlot.png',transparent=True, bbox_inches='tight',dpi=1000)
