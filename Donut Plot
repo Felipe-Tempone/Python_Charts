@@ -1,0 +1,39 @@
+#Developed by Felipe Tempone
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+#Select the dataframe and paste path
+df = pd.read_excel(r"file_path\Book1.xlsx",'x')
+
+#Complete with the labels and sizes column names
+labels_column = "Labels"
+sizes_column = "Values"
+
+sizes = df[sizes_column].tolist()
+labels = df[labels_column].tolist()
+
+df_used=df[ [labels_column,sizes_column] ]
+
+colors=('teal','lightseagreen','darkturquoise','paleturquoise','mediumslateblue','slateblue',
+        'darkslateblue','lightslategrey','silver','lightsteelblue','papayawhip')
+
+#you can explode the Nth element if you want
+#explode=[0,0,0,0,0,0,0,0,0,0,0.2]
+
+plt.pie(sizes, 
+        #explode,
+        autopct='%1.0f%%', pctdistance=1.25, colors=colors, shadow=False, startangle=90,radius=1.25)
+
+#draw circle
+centre_circle = plt.Circle((0,0),0.6,fc='white')
+fig = plt.gcf()
+fig.gca().add_artist(centre_circle)
+
+plt.axis('equal')
+plt.legend(labels, bbox_to_anchor=(1.2,.5), loc="center")
+
+plt.savefig(r'file_path\DonutPlot.png',transparent=True, bbox_inches='tight',dpi=1000)
+
+plt.show()
