@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 #Select the dataframe and paste path and sheet name
 df = pd.read_excel(
-    r"C:\Users\TemponeTemponeCardos\Desktop\Book1.xlsx",'x') #endereço do arquivo + a Tab
+    r"file_path.xlsx",'x') #endereço do arquivo + a Tab
 
 #Complete with the labels and sizes column names
 labels_column = "Company" #coluna de títulos
@@ -38,4 +38,4 @@ ax.set_ylabel(sizes_column)
 
 print(df_used)
 
-plt.savefig(r'\Users\TemponeTemponeCardos\Desktop\BarPlot.png',transparent=True, bbox_inches='tight',dpi=1000)
+plt.savefig(r'file_path\BarPlot.png',transparent=True, bbox_inches='tight',dpi=1000)
