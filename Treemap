@@ -1,0 +1,37 @@
+# libraries
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+import squarify    #pip install squarify (if the library is not installed)
+import seaborn as sns
+import pandas as pd
+
+df=pd.read_excel(r"file_path.xlsx",'x')
+
+labels_column = "Brand"
+sizes_column = "Disputes"
+
+sns.set(style="ticks")
+
+y = df[labels_column].tolist()
+x = df[sizes_column].tolist()
+
+# create a color palette, mapped to these values
+cmap = matplotlib.cm.Blues
+mini=min(x)
+maxi=max(x)
+norm = matplotlib.colors.Normalize(vmin=mini, vmax=maxi)
+colors = [cmap(norm(value)) for value in x]
+
+font = {'size':9}
+
+matplotlib.rc('font', **font)
+from cycler import cycler
+mpl.rcParams['axes.prop_cycle'] = cycler(color='bgrcmyk')
+
+# If you have 2 lists
+squarify.plot(sizes=x, label=y, alpha=0.8, color=colors)
+plt.axis('off')
+plt.savefig(r'file_path\TreemapPlot.png',transparent=True, bbox_inches='tight',dpi=1000)
+
+plt.show()
