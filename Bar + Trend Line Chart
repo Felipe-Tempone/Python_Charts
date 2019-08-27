@@ -17,7 +17,6 @@ labels_column = "Month" #coluna de títulos
 sizes_column = "Actual" #coluna de valores
 varlinha = "Budget" #linha de tendência
 
-
 height = df[sizes_column].tolist()
 width = df[labels_column].tolist()
 varli = df[varlinha].tolist()
@@ -30,6 +29,7 @@ plt.bar(width, height, align='center',color=cor)
 
 import matplotlib.patches as mpatches
 
+#The following code creates the 2nd variable legend!
 class AnyObject(object):
     pass
 
@@ -44,6 +44,8 @@ class AnyObjectHandler(object):
 plt.legend([AnyObject()], [sizes_column],
            handler_map={AnyObject: AnyObjectHandler()})
 
+
+#Set the scale for both axis
 if max(height)>max(varli):
     maximo = max(height)
 else:
@@ -52,7 +54,7 @@ else:
 plt.title(' ')
 plt.ylim(0, maximo) #Escala Y_1
 ax = plt.gca()
-ax = df[varlinha].plot(secondary_y=True,xlim=ax.get_xlim(),color='midnightblue')
+ax = df[varlinha].plot(secondary_y=True,xlim=ax.get_xlim(),color='midnightblue') #set the trend line
 
 ax.set_xlabel(labels_column)
 ax.set_ylabel(sizes_column)
