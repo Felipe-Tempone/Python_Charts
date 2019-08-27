@@ -1,0 +1,53 @@
+#Libraries
+import matplotlib.pyplot as plt
+import pandas as pd
+from math import pi
+
+plt.clf()
+plt.figure(figsize=(20,5))
+    
+#Set data
+df = pd.DataFrame({
+'group': ['A'],
+'Var1': [100],
+'Var2': [100],
+'Var3':[100],
+'Var4': [100]
+#,'DSO': [50] #You can add as many axis as you want!
+})
+
+labels=df[0:]
+
+#Number of axis
+categories=list(df)[1:]
+N = len(categories)
+
+#We are going to plot the first line of the data frame.
+#But we need to repeat the first value to close the circular graph:
+values=df.loc[0].drop('group').values.flatten().tolist()
+values += values[:1]
+ 
+#What will be the angle of each axis in the plot? (we divide the plot / number of axis)
+angles = [n / float(N) * 2 * pi for n in range(N)]
+angles += angles[:1]
+ 
+#Initialise the spider plot
+ax = plt.subplot(111, polar=True)
+ 
+#Draw one axe per variable + add labels
+plt.xticks(angles[:-1],categories, color='black', size=12)
+
+#Draw ylabels
+ax.set_rlabel_position(0)
+plt.yticks([25,50,75], [" "," "," "], color="navy", size=10)
+plt.ylim(0,100)
+
+
+#Plot data
+ax.plot(angles, values, linewidth=1, linestyle='solid', color='navy')
+
+ax.fill(angles, values, 'navy', alpha=0.1)
+
+plt.savefig(r'\Users\TemponeTemponeCardos\Desktop\RadarPlot.png',transparent=True, bbox_inches='tight',dpi=1000)
+
+plt.show()
