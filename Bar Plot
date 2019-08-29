@@ -22,7 +22,8 @@ width = df[labels_column].tolist()
 
 df_used=df[ [labels_column,sizes_column] ]
 
-plt.barh(width, height, align='center',color='teal')
+#You can use the function "plt.barh" to create an horizontal bar plot!
+plt.bar(width, height, align='center',color='teal')
 
 plt.title(' ')
 
