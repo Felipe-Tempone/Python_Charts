@@ -1,0 +1,81 @@
+#Bar Plot + Trend lines
+#Developed by Felipe Tempone
+
+import pandas as pd
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+#Dataframe
+df = pd.read_excel("path","tab")
+
+#abels and sizes column names
+labels_column = "X Axis" #coluna de títulos
+sizes_column = "Y Var I" #coluna de valores
+sizes_column2 = "Y Var II"
+varlinha = "Trend I" #linha de tendência
+varlinha2 = "Trend II"
+
+height = df[sizes_column].tolist()
+height2= df[sizes_column2].tolist()
+width = df[labels_column].tolist()
+varli = df[varlinha].tolist()
+varli2 = df[varlinha2].tolist()
+
+plt.figure(figsize=(12,4))
+cor="lightsteelblue"
+cor2="orange"
+cor4="midnightblue"
+cor3="darkorange"
+ax = plt.subplot(111)
+rects1=ax.bar(width, height2, width=-0.4,align='edge', color=cor2) #first bar
+rects2=ax.bar(width, height, width=0.4,align='edge',color=cor)     #second bar
+ax.legend((rects1, rects2), (sizes_column2, sizes_column),bbox_to_anchor=(1,1),
+          title="",
+          loc='lower left')
+
+ax.autoscale(tight=True)
+
+#the command bellow sets the scale of the axises
+if max(varli2)>max(varli):
+    maximo_varli = max(varli2)
+else:
+    maximo_varli=max(varli)
+
+if max(height2)>max(height):
+    maximo_height = max(height2)
+else:
+    maximo_height=max(height)
+
+if maximo_height>maximo_varli:
+    maximo = maximo_height
+else:
+    maximo=maximo_varli
+
+
+plt.title(' ')
+plt.ylim(0, maximo) #Escala Y_1
+ax = df[varlinha].plot(secondary_y=True,xlim=ax.get_xlim(),color=cor4)
+ax = df[varlinha2].plot(secondary_y=True,xlim=ax.get_xlim(),color=cor3)
+
+sns.despine(top=True, right=False, left=False, bottom=False)
+
+#set all axis borders to white to have a clearer view of the chart
+ax.spines['bottom'].set_color('w')
+ax.spines['left'].set_color('w')
+ax.spines['top'].set_color('w')
+ax.spines['right'].set_color('w')
+
+plt.ylim(0, maximo)   #Escala Y_2
+
+plt.ylabel(" ") #add a title if you want
+
+plt.legend(bbox_to_anchor=(0.83, 1.2), loc='upper left')
+
+#if you want to save the image
+#plt.savefig("path_to_save.png",transparent=True, bbox_inches='tight',dpi=500)
+
+plt.show()
+
+#You can remove variables if you don't need them, basically these are two charts (bar and line plots) overlapped. 
+#Use your programming skills to leverage this piece of code!
